@@ -1,13 +1,17 @@
 version: "3.9"  # optional since v1.27.0
 services:
   web:
+    build: ./devops_frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+  api:
     build: ./sqlBinder
     environment:
       - DB_USER=root
       - DB_PASS=Q4cz@Yy8C?pLN!5$
       - DB_URL=jdbc:mysql://mysql:3306/db_example
-    ports:
-      - "80:8080"
     depends_on:
       - mysql
   mysql:
