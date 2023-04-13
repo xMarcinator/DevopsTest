@@ -1,19 +1,19 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import Article from './components/Article.vue'
+import Front from './components/Front.vue'
 import TheWelcome from './components/TheWelcome.vue'
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <Article title="Docker-project" content="Skriv noget til vores artikel-samling!" />
     </div>
   </header>
 
   <main>
-    <TheWelcome />
+    <Front title="Titel" content="Virkelig meget indhold med meget tekst og så videre, således at man kan vurdere nogle størrelser." />
   </main>
 </template>
 
@@ -28,7 +28,7 @@ header {
 }
 
 @media (min-width: 1024px) {
-  header {
+  /*header {
     display: flex;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
@@ -42,6 +42,6 @@ header {
     display: flex;
     place-items: flex-start;
     flex-wrap: wrap;
-  }
+  }*/
 }
 </style>
