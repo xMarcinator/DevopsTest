@@ -5,19 +5,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - run: cd devops_frontend
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/maven@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: test
-          args: --severity-threshold=high
-      - run: cd ../sqlBinder
+          args: --severity-threshold=high --all-projects --exclude=devops_frontend
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: test
-          args: --severity-threshold=high
+          args: --severity-threshold=high --all-projects --exclude=sqlBinder
