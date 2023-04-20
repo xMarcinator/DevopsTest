@@ -1,0 +1,6 @@
+POST http://localhost:80/api/article/add?Heading=First&Content=someemail@someemailprovider.com
+Accept: application/json
+###
+
+###
+POST http://localhost:8080/article/remove?id=1
