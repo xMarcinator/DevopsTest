@@ -17,6 +17,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+      - run: pwd
       - name: Run the Maven verify phase
         run: cd /sqlBinder && mvn --batch-mode --update-snapshots verify
       - run: pwd
