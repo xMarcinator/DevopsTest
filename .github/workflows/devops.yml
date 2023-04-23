@@ -21,7 +21,7 @@ jobs:
           pwd
           ls -la
       - name: Run the Maven verify phase
-        run: cd /sqlBinder && mvn --batch-mode --update-snapshots verify
+        run: cd ./sqlBinder && mvn --batch-mode --update-snapshots verify
       - run: pwd
       - name: Run Snyk to check for vulnerabilities
         run: snyk test --all-projects
