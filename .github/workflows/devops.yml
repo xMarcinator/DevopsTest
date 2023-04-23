@@ -5,24 +5,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - run: curl https://static.snyk.io/cli/latest/snyk-linux -o snyk
+      - name: Install Snyk
+        run: | 
+          chmod +x ./snyk
+          mv ./snyk /usr/local/bin/
+          snyk auth ${{ secrets.SNYK_TOKEN }}
+
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots verify -f sqlBinder/pom.xml
-      - name: Run Snyk to check for vulnerabilities in java
-        uses: snyk/actions/maven@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: test
-          args: --severity-threshold=high --all-projects --exclude=devops_frontend
-      - name: Run Snyk to check for vulnerabilities in javascript
-        uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: test
-          args:  --all-projects --exclude=sqlBinder
+      - name: Run the Maven verify phase
+        run: cd /sqlBinder && mvn --batch-mode --update-snapshots verify
+      - run: pwd
+      - name: Run Snyk to check for vulnerabilities
+        run: snyk test --all-projects
