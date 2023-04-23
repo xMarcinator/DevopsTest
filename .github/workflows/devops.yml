@@ -10,7 +10,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          command: DEBUG=*snyk* test
+          command: test
           args: --severity-threshold=high --all-projects --exclude=devops_frontend
       - name: Run Snyk to check for vulnerabilities in javascript
         uses: snyk/actions/node@master
