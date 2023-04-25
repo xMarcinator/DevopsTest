@@ -27,12 +27,6 @@ public class ArticleController {
         Article savedArticle = articleRepository.save(n);
         return savedArticle.getID();
     }
-    @PostMapping(path = "/remove") // Map ONLY POST Requests
-    public @ResponseBody Article addNewUser(@RequestParam Integer id) {
-        Optional<Article> byId = articleRepository.findById(id);
-        byId.ifPresent(articleRepository::delete);
-        return byId.orElse(null);
-    }
 
     @GetMapping(path = "/all")
     public @ResponseBody Iterable<Article> getAllUsers() {

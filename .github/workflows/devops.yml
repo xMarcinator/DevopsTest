@@ -26,4 +26,4 @@ jobs:
       - name: Build with NPM
         run: cd ./devops_frontend && npm install
       - name: Run Snyk to check for vulnerabilities
-        run: snyk test --all-projects --severity-threshold=high
+        run: snyk test --all-projects --severity-threshold=medium
